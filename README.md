@@ -1,3 +1,67 @@
+
+### 安装Node环境
+
+```
+sudo apt update && sudo apt upgrade
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install nodejs
+```
+
+### 安装依赖并创建配置文件
+
+```
+# 切换到new-wechatgpt分支
+git checkout new-wechatgpt
+
+# 安装依赖
+npm install
+
+# 创建配置文件
+cp config.yaml.example config.yaml
+cp .env.example .env
+```
+
+### 修改配置文件
+
+config.yaml内容如下：
+
+```
+chatGPTAccountPool:
+  - email: 填写你的ChatGPT账号
+    password: 填写你的ChatGPT密码
+    isGoogleLogin: false
+chatPrivateTiggerKeyword: ""
+openAIProxy: ""
+```
+
+.env内容如下：
+
+```
+CHAT_GPT_EMAIL=
+CHAT_GPT_PASSWORD=
+CHAT_GPT_RETRY_TIMES=
+CHAT_PRIVATE_TRIGGER_KEYWORD=
+OPENAI_PROXY=
+NOPECHA_KEY=
+CAPTCHA_TOKEN=
+OPENAI_API_KEY=填写你的API_KEY
+```
+
+### 修改模型
+
+1. 打开文件：/wechat-chatgpt/node_modules/chatgpt/build/index.js (73行)
+2. 修改模型为：text-davinci-003
+
+### 启动服务并扫码登录
+
+```
+npm run dev
+```
+
+### 恭喜完成所有配置
+
+
+
 <h1 align="center">Welcome to wechat-chatgpt 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
